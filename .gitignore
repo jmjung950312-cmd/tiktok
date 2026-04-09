@@ -1,0 +1,66 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Phase 1 additions
+.venv/
+/data/
+/assets/backgrounds/
+*.wav
+*.mp4
+!/public/**/*.mp4
+
+# Phase 2 additions (P2-T03 BGM)
+/assets/bgm/*
+!/assets/bgm/README.md
+
+# Phase 2 additions (P2-T04 Pexels cache)
+/assets/backgrounds/_cache/
+
+# Hook 런타임 산출물
+.claude/logs/*.jsonl
+.claude/logs/.edit-flag-*
+
+# Shrimp MCP 내부 데이터 (별도 git 관리)
+/.shrimp_data/
+
+# Plan 파일 (로컬 전용)
+/.claude/plans/

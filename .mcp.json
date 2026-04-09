@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "shrimp-task-manager": {
+      "command": "node",
+      "args": ["/Users/jungmo/mcp-shrimp-task-manager/dist/index.js"],
+      "env": {
+        "DATA_DIR": "/Users/jungmo/Developer/Claude-Core/tiktok-automation_2026-04-08/.shrimp_data",
+        "TEMPLATES_USE": "ko",
+        "ENABLE_GUI": "false"
+      }
+    }
+  }
+}

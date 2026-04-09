@@ -1,0 +1,29 @@
+[Script Info]
+; TikTok 자동화 파이프라인 자막 템플릿
+; lib/pipeline/subtitle.ts 가 [Events] 섹션의 {DIALOGUE_LINES} 플레이스홀더를
+; 문장별 Dialogue 줄로 치환한다.
+;
+; P2-T07: Default + Karaoke 두 스타일 공존.
+;   - Default  : 기본 흰색 외곽 검정. 한 문장 = 한 줄 표시.
+;   - Karaoke  : 어절(\k 태그) 단위 강조. libass \k 의미상
+;                 SecondaryColour = "아직 강조 전(초기)" 색,
+;                 PrimaryColour   = "강조 후(현재 진행)" 색이다.
+;                 따라서 PrimaryColour=시그니처 노랑(#FFD400),
+;                       SecondaryColour=라이트 그레이(#CCCCCC).
+;                 ASS 색은 &H00BBGGRR (BGR + alpha 0).
+Title: TikTok Subtitle Template
+ScriptType: v4.00+
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+PlayResX: 1080
+PlayResY: 1920
+YCbCr Matrix: TV.709
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Pretendard,64,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,4,0,2,60,60,480,1
+Style: Karaoke,Pretendard,64,&H0000D4FF,&H00CCCCCC,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,4,0,2,60,60,480,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+{DIALOGUE_LINES}

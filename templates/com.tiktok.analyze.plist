@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  com.tiktok.analyze.plist
+  P2-T09: 시나리오 C 매주 월요일 09:00 자동 발동용 launchd 에이전트 템플릿.
+
+  설치 시 scripts/install-cron-analyze.sh 가 __PROJECT_ROOT__ / __HOME__ 플레이스홀더를
+  실제 절대경로로 치환한다. (com.tiktok.leader 와 동일한 패턴.)
+
+  주요 설정:
+    - StartCalendarInterval: Weekday=1(월), Hour=9, Minute=0
+    - RunAtLoad: false  → load 시 즉시 실행하지 않음(매주 월 09:00 만)
+    - KeepAlive: false  → 짧은 INSERT 스크립트이므로 재기동 불필요
+    - StandardOut/ErrorPath: ~/Library/Logs/tiktok-analyze.log
+
+  관련:
+    - scripts/cron-enqueue-weekly.sh : sqlite3 INSERT 본체
+    - .claude/hooks/session-start-poll.sh : queued 감지 후 Leader 가 시나리오 C 가동
+
+  수동 강제 실행:
+    launchctl kickstart -k gui/$(id -u)/com.tiktok.analyze
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.tiktok.analyze</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>__PROJECT_ROOT__/scripts/cron-enqueue-weekly.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>__PROJECT_ROOT__</string>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key>
+    <integer>1</integer>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>KeepAlive</key>
+  <false/>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>__HOME__/Library/Logs/tiktok-analyze.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>__HOME__/Library/Logs/tiktok-analyze.log</string>
+</dict>
+</plist>

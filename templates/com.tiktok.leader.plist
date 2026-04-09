@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  com.tiktok.leader.plist
+  Leader(tmux + claude CLI) 상시 기동용 launchd 에이전트 템플릿.
+  설치 시 scripts/install-leader-daemon.sh가 __PROJECT_ROOT__ 플레이스홀더를 실제 절대경로로 치환한다.
+
+  주요 설정:
+  - RunAtLoad: true  → 로그인/launchctl load 시 즉시 1회 실행
+  - KeepAlive: false → crash 시 무한 재기동 금지(토큰 폭증 방지, P2-T11 설계 결정)
+  - ProcessType: Interactive → 대화형 세션
+  - StandardOutPath/StandardErrorPath → ~/Library/Logs/tiktok-leader.log
+
+  재기동이 필요하면 사용자가 수동:
+    launchctl kickstart -k gui/$(id -u)/com.tiktok.leader
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.tiktok.leader</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>__PROJECT_ROOT__/scripts/start-leader-tmux.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>__PROJECT_ROOT__</string>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <false/>
+
+  <key>ProcessType</key>
+  <string>Interactive</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</key>
+    <string>1</string>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>__HOME__/Library/Logs/tiktok-leader.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>__HOME__/Library/Logs/tiktok-leader.log</string>
+</dict>
+</plist>
