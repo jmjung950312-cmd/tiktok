@@ -105,8 +105,7 @@ export function HookSwitcher({
           disabled={!hasAlternatives}
           title={hasAlternatives ? '훅 3종 중 선택' : 'hookAlternatives 없음 — 새 잡에서 활성화'}
         >
-          <Sparkles className="mr-1 h-3 w-3" />
-          훅 변경
+          <Sparkles className="mr-1 h-3 w-3" />훅 변경
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-lg">
@@ -123,7 +122,7 @@ export function HookSwitcher({
             <label
               key={opt.id}
               htmlFor={`hook-opt-${itemIndex}-${opt.id}`}
-              className="flex cursor-pointer items-start gap-3 rounded-md border border-input p-3 hover:bg-accent/40"
+              className="border-input hover:bg-accent/40 flex cursor-pointer items-start gap-3 rounded-md border p-3"
             >
               <RadioGroupItem
                 id={`hook-opt-${itemIndex}-${opt.id}`}
@@ -131,7 +130,7 @@ export function HookSwitcher({
                 className="mt-1"
               />
               <div className="flex-1 space-y-1">
-                <p className="text-xs font-semibold text-muted-foreground">{opt.label}</p>
+                <p className="text-muted-foreground text-xs font-semibold">{opt.label}</p>
                 <p className="text-sm leading-relaxed">{opt.text}</p>
               </div>
             </label>

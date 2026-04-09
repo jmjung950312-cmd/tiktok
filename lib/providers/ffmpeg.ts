@@ -29,7 +29,10 @@ export function getFfmpegPath(): string {
 export function getFfprobePathOrNull(): string | null {
   try {
     const ffmpeg = getFfmpegPath();
-    const guess = path.join(path.dirname(ffmpeg), process.platform === 'win32' ? 'ffprobe.exe' : 'ffprobe');
+    const guess = path.join(
+      path.dirname(ffmpeg),
+      process.platform === 'win32' ? 'ffprobe.exe' : 'ffprobe',
+    );
     return guess;
   } catch {
     return null;

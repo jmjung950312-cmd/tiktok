@@ -30,10 +30,7 @@ const ScriptEditSchema = z.object({
   sentences: z
     .array(
       z.object({
-        value: z
-          .string()
-          .min(1, '문장은 1자 이상')
-          .max(200, '문장은 200자 이하'),
+        value: z.string().min(1, '문장은 1자 이상').max(200, '문장은 200자 이하'),
       }),
     )
     .length(5, '5문장이 필요합니다'),
@@ -49,12 +46,7 @@ interface ScriptEditorProps {
   onRequested?: () => void;
 }
 
-export function ScriptEditor({
-  jobId,
-  itemIndex,
-  sentences,
-  onRequested,
-}: ScriptEditorProps) {
+export function ScriptEditor({ jobId, itemIndex, sentences, onRequested }: ScriptEditorProps) {
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -125,8 +117,8 @@ export function ScriptEditor({
         <DialogHeader>
           <DialogTitle>아이템 #{itemIndex + 1} · 대본 편집</DialogTitle>
           <DialogDescription>
-            5문장을 직접 수정한 뒤 저장하면 결정론 파이프라인만 재실행됩니다(LLM 토큰 0).
-            첫 문장이 훅으로 사용됩니다.
+            5문장을 직접 수정한 뒤 저장하면 결정론 파이프라인만 재실행됩니다(LLM 토큰 0). 첫 문장이
+            훅으로 사용됩니다.
           </DialogDescription>
         </DialogHeader>
 
@@ -143,9 +135,7 @@ export function ScriptEditor({
                   rows={2}
                   {...register(`sentences.${idx}.value` as const)}
                 />
-                {fieldError && (
-                  <p className="text-xs text-destructive">{fieldError}</p>
-                )}
+                {fieldError && <p className="text-destructive text-xs">{fieldError}</p>}
               </div>
             );
           })}

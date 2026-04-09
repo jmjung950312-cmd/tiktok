@@ -11,7 +11,7 @@
 // 사용:
 //   npx tsx scripts/test-thumbnail.ts
 
-import { existsSync, mkdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 import { spawnFfmpeg } from '../lib/providers/ffmpeg';
@@ -67,8 +67,7 @@ interface JpegInfo {
  *   바이트 구성: marker(2) + length(2) + precision(1) + height(2) + width(2) + ...
  */
 function readJpegSize(filePath: string): JpegInfo {
-  const fs = require('node:fs') as typeof import('node:fs');
-  const buf: Buffer = fs.readFileSync(filePath);
+  const buf: Buffer = readFileSync(filePath);
   if (buf[0] !== 0xff || buf[1] !== 0xd8) {
     throw new Error(`[test-thumbnail] JPEG SOI 헤더 아님: ${filePath}`);
   }
@@ -80,11 +79,7 @@ function readJpegSize(filePath: string): JpegInfo {
     const marker = buf[i + 1];
     // SOF0~SOF3, SOF5~SOF7, SOF9~SOF11, SOF13~SOF15
     const isSof =
-      marker >= 0xc0 &&
-      marker <= 0xcf &&
-      marker !== 0xc4 &&
-      marker !== 0xc8 &&
-      marker !== 0xcc;
+      marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc;
     const segLen = buf.readUInt16BE(i + 2);
     if (isSof) {
       const height = buf.readUInt16BE(i + 5);
@@ -137,7 +132,9 @@ async function main(): Promise<number> {
     return 2;
   }
   if (!existsSync(result.thumbnailPath)) {
-    console.error(`[test-thumbnail] FAIL: 썸네일 파일이 디스크에 없습니다: ${result.thumbnailPath}`);
+    console.error(
+      `[test-thumbnail] FAIL: 썸네일 파일이 디스크에 없습니다: ${result.thumbnailPath}`,
+    );
     return 3;
   }
   const sz = statSync(result.thumbnailPath).size;

@@ -41,6 +41,7 @@ tools:
 파일 경로: `data/jobs/[jobId]/scripts-draft.json` (5개 모두 누적 저장, 배열)
 
 각 아이템 형식:
+
 ```json
 {
   "index": 0,

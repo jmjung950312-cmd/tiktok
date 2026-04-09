@@ -20,7 +20,7 @@ export function VideoGrid() {
         <h2 id="video-grid-title" className="text-xl font-semibold">
           5. 생성 결과
         </h2>
-        <Card className="p-6 text-center text-sm text-muted-foreground">
+        <Card className="text-muted-foreground p-6 text-center text-sm">
           완료된 영상이 아직 없습니다. 생성 버튼을 눌러 시나리오 A 를 실행하세요.
         </Card>
       </section>
@@ -28,8 +28,7 @@ export function VideoGrid() {
   }
 
   const allCompleted =
-    detail.items.length > 0 &&
-    detail.items.every((i) => i.status === 'completed' && i.outputPath);
+    detail.items.length > 0 && detail.items.every((i) => i.status === 'completed' && i.outputPath);
 
   return (
     <section aria-labelledby="video-grid-title" className="space-y-4">
@@ -44,7 +43,9 @@ export function VideoGrid() {
           disabled={!allCompleted}
           onClick={() => {
             // ZIP 엔드포인트는 Phase 2. Phase 1 은 안내 Toast.
-            window.alert('ZIP 다운로드는 Phase 2 에서 구현 예정입니다. Phase 1 은 개별 다운로드만 지원.');
+            window.alert(
+              'ZIP 다운로드는 Phase 2 에서 구현 예정입니다. Phase 1 은 개별 다운로드만 지원.',
+            );
           }}
         >
           <Download className="mr-1 h-4 w-4" />

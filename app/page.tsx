@@ -12,10 +12,10 @@ import { RecommendationPanel } from '@/components/analytics/recommendation-panel
 
 export default function DashboardPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 space-y-10 sm:px-6">
+    <div className="mx-auto max-w-6xl space-y-10 px-4 py-8 sm:px-6">
       <header className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">TikTok 자동화 대시보드</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           카테고리를 고르고 &quot;5개 자동 생성&quot; 버튼을 누르면 Claude Code Agent Teams 가
           시나리오 A 를 실행합니다. 15분 이내 mp4 5개가 준비됩니다.
         </p>

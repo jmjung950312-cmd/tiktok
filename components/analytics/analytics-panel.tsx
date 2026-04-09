@@ -15,12 +15,12 @@ export function AnalyticsPanel() {
       <h2 id="analytics-panel-title" className="text-xl font-semibold">
         6. 분석 요약
       </h2>
-      <Card className="p-6 space-y-4">
+      <Card className="space-y-4 p-6">
         <div className="flex items-start gap-3">
-          <BarChart3 className="h-5 w-5 text-muted-foreground mt-0.5" />
+          <BarChart3 className="text-muted-foreground mt-0.5 h-5 w-5" />
           <div className="flex-1 space-y-1">
             <p className="font-medium">Phase 2 준비 중</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               주간 메트릭 집계와 카테고리별 성공률 분석은 시나리오 C (metrics-analyst +
               trend-analyst) 완성 후 활성화됩니다.
             </p>

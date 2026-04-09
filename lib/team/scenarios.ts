@@ -36,13 +36,7 @@ const ScenarioA: ScenarioDef = {
   label: '콘텐츠 제작',
   description:
     '카테고리 하나에 대해 trend-scout → script-writer → hook-critic → caption-crafter → content-qa 5명이 순차·병렬 작업하여 final-content.json 생성',
-  teammates: [
-    'trend-scout',
-    'script-writer',
-    'hook-critic',
-    'caption-crafter',
-    'content-qa',
-  ],
+  teammates: ['trend-scout', 'script-writer', 'hook-critic', 'caption-crafter', 'content-qa'],
   expectedDurationMin: 15,
   activation: 'active',
   payloadSchema: ScenarioAPayloadSchema,
@@ -115,8 +109,7 @@ const ScenarioD: ScenarioDef = {
 const ScenarioE: ScenarioDef = {
   code: 'E',
   label: '퍼스널라이제이션 (Phase 3)',
-  description:
-    '사용자가 수동으로 스타일/훅 선호 학습을 강제 실행. preference-learner 단독 spawn',
+  description: '사용자가 수동으로 스타일/훅 선호 학습을 강제 실행. preference-learner 단독 spawn',
   teammates: ['preference-learner'],
   expectedDurationMin: 5,
   activation: 'skeleton',

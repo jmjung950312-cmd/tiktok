@@ -91,10 +91,7 @@ export async function POST(request: Request, context: RouteContext): Promise<Res
   // ── final-content.json 로드 + 검증 ──────────────────────────────────────
   const filePath = getFinalContentPath(jobId);
   if (!existsSync(filePath)) {
-    return NextResponse.json(
-      { error: 'final-content-missing', filePath },
-      { status: 404 },
-    );
+    return NextResponse.json({ error: 'final-content-missing', filePath }, { status: 404 });
   }
 
   let fileJson: unknown;
@@ -124,19 +121,13 @@ export async function POST(request: Request, context: RouteContext): Promise<Res
   const content = validated.data;
   const target = content.items[itemIndex];
   if (!target) {
-    return NextResponse.json(
-      { error: 'item-index-out-of-range', itemIndex },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: 'item-index-out-of-range', itemIndex }, { status: 400 });
   }
 
   // ── 동시성 lock ────────────────────────────────────────────────────────
   const key = lockKey(jobId, itemIndex);
   if (inFlight.has(key)) {
-    return NextResponse.json(
-      { error: 'rerender-in-progress', jobId, itemIndex },
-      { status: 409 },
-    );
+    return NextResponse.json({ error: 'rerender-in-progress', jobId, itemIndex }, { status: 409 });
   }
   inFlight.add(key);
 

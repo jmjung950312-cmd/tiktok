@@ -31,6 +31,7 @@ Create an agent team named poc-team with 3 teammates: trend-scout, script-writer
 ```
 
 **관찰 포인트**:
+
 - 팀 생성 소요 시간 (예: ~10초)
 - Claude가 어떤 응답 포맷으로 확인하는지
 - 에러/경고 메시지 유무
@@ -50,6 +51,7 @@ Ask trend-scout to suggest 3 topics about love psychology for TikTok. Each topic
 ```
 
 **관찰 포인트**:
+
 - trend-scout가 spawn되는 시점 (Leader → teammate 전환)
 - 응답까지 소요 시간 (예: ~30초~1분)
 - 응답 포맷 (번호 리스트? 마크다운?)
@@ -105,19 +107,25 @@ Delete the poc-team
 
 **2. /agents 목록 (Step 3)**
 ```
+
 (여기에 출력 붙여넣기)
+
 ```
 
 **3. trend-scout 응답 (Step 4)**
 - 소요 시간:
 - 응답 전문:
 ```
+
 (주제 3개 복사)
+
 ```
 
 **4. script-writer 응답 (Step 5, 선택)**
 ```
+
 (선택 실행 시 결과)
+
 ```
 
 **5. Clean up (Step 6~7)**

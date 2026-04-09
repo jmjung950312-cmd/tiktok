@@ -8,12 +8,12 @@
 
 ## 1. 가설과 비교 기준
 
-| 항목 | 값 |
-|---|---|
-| **가설(PRD §15 R-15)** | plan mode × Opus 중첩으로 토큰 소비가 **단일 Sonnet 시나리오 A의 약 7배** |
-| **비교 기준 1** | 시나리오 A 1회 (`/tiktok-generate love-psychology`) — Sonnet 5명 + Opus 1명(hook-critic) |
-| **비교 기준 2** | Max 플랜 일일 토큰 한도(공개 미공개 — 경험적으로 ~수백만 input + 수십만 output 토큰 수준으로 추정) |
-| **측정 도구** | (1) tmux Leader 세션의 `/context` 슬래시 커맨드 (delta 확인), (2) `~/.claude/projects/*/transcripts/*.jsonl` 파싱(필요 시) |
+| 항목                   | 값                                                                                                                         |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **가설(PRD §15 R-15)** | plan mode × Opus 중첩으로 토큰 소비가 **단일 Sonnet 시나리오 A의 약 7배**                                                  |
+| **비교 기준 1**        | 시나리오 A 1회 (`/tiktok-generate love-psychology`) — Sonnet 5명 + Opus 1명(hook-critic)                                   |
+| **비교 기준 2**        | Max 플랜 일일 토큰 한도(공개 미공개 — 경험적으로 ~수백만 input + 수십만 output 토큰 수준으로 추정)                         |
+| **측정 도구**          | (1) tmux Leader 세션의 `/context` 슬래시 커맨드 (delta 확인), (2) `~/.claude/projects/*/transcripts/*.jsonl` 파싱(필요 시) |
 
 ---
 
@@ -69,39 +69,39 @@ opus_share    = opus_tokens / scenarioB_total
 
 ### 3.1 시나리오 A 베이스라인
 
-| 항목 | 값 |
-|---|---|
-| 측정 일시 | _YYYY-MM-DD HH:MM_ |
-| 작업 내용 | `/tiktok-generate <category>` |
-| 소요 시간 | _NN분_ |
-| Sonnet input 토큰 | _NNN,NNN_ |
-| Sonnet output 토큰 | _NN,NNN_ |
-| Opus input 토큰 (hook-critic) | _NN,NNN_ |
-| Opus output 토큰 (hook-critic) | _N,NNN_ |
-| **합계 (input + output)** | **_NNN,NNN_** |
+| 항목                           | 값                            |
+| ------------------------------ | ----------------------------- |
+| 측정 일시                      | _YYYY-MM-DD HH:MM_            |
+| 작업 내용                      | `/tiktok-generate <category>` |
+| 소요 시간                      | _NN분_                        |
+| Sonnet input 토큰              | _NNN,NNN_                     |
+| Sonnet output 토큰             | _NN,NNN_                      |
+| Opus input 토큰 (hook-critic)  | _NN,NNN_                      |
+| Opus output 토큰 (hook-critic) | _N,NNN_                       |
+| **합계 (input + output)**      | **_NNN,NNN_**                 |
 
 ### 3.2 시나리오 B 실측
 
-| 항목 | 값 |
-|---|---|
-| 측정 일시 | _YYYY-MM-DD HH:MM_ |
-| 작업 내용 | _요청 제목_ |
+| 항목                             | 값                                   |
+| -------------------------------- | ------------------------------------ |
+| 측정 일시                        | _YYYY-MM-DD HH:MM_                   |
+| 작업 내용                        | _요청 제목_                          |
 | Teammate 3인 plan mode 활성 여부 | ☐ frontend ☐ backend ☐ code-reviewer |
-| 소요 시간 | _NN분_ |
-| frontend-builder Opus tokens | _NNN,NNN_ |
-| backend-builder Opus tokens | _NNN,NNN_ |
-| code-reviewer Opus tokens | _NNN,NNN_ |
-| Leader Opus tokens | _NN,NNN_ |
-| **합계 (input + output)** | **_NNN,NNN_** |
+| 소요 시간                        | _NN분_                               |
+| frontend-builder Opus tokens     | _NNN,NNN_                            |
+| backend-builder Opus tokens      | _NNN,NNN_                            |
+| code-reviewer Opus tokens        | _NNN,NNN_                            |
+| Leader Opus tokens               | _NN,NNN_                             |
+| **합계 (input + output)**        | **_NNN,NNN_**                        |
 
 ### 3.3 비교 지표
 
-| 지표 | 값 | 가설(7배)과 차이 |
-|---|---|---|
-| ratio (B / A) | _N.N_ | _+/- N.N_ |
-| plan mode overhead | _NN%_ | _N/A_ |
-| Opus 비중 | _NN%_ | _N/A_ |
-| Max 플랜 일일 한도 대비 단일 가동 점유율(추정) | _NN%_ | _N/A_ |
+| 지표                                           | 값    | 가설(7배)과 차이 |
+| ---------------------------------------------- | ----- | ---------------- |
+| ratio (B / A)                                  | _N.N_ | _+/- N.N_        |
+| plan mode overhead                             | _NN%_ | _N/A_            |
+| Opus 비중                                      | _NN%_ | _N/A_            |
+| Max 플랜 일일 한도 대비 단일 가동 점유율(추정) | _NN%_ | _N/A_            |
 
 ---
 
@@ -109,12 +109,12 @@ opus_share    = opus_tokens / scenarioB_total
 
 > 측정 전 임시 권고 — `ratio` 가 다음 범위에 들어갈 때 채택할 정책:
 
-| ratio 구간 | 권고 정책 | UI 반영 |
-|---|---|---|
-| **< 3배** | 별도 제한 불필요 | 현행 R-18 토스트 유지 |
-| **3 ~ 6배** | 일일 2회 권고(소프트 캡) | 시나리오 B 트리거 시 "오늘 N회째" 카운터 표시 |
-| **6 ~ 10배** | 일일 1회 하드 캡 | 2회째 시도 시 토스트 "오늘 한도 도달, 내일 재시도" 후 큐 거절 (`/api/team/trigger` 400) |
-| **> 10배** | 1회/3일 + 사전 확인 모달 | "정말 가동하시겠습니까? 토큰 소모 ratio: NN배" 확인 |
+| ratio 구간   | 권고 정책                | UI 반영                                                                                 |
+| ------------ | ------------------------ | --------------------------------------------------------------------------------------- |
+| **< 3배**    | 별도 제한 불필요         | 현행 R-18 토스트 유지                                                                   |
+| **3 ~ 6배**  | 일일 2회 권고(소프트 캡) | 시나리오 B 트리거 시 "오늘 N회째" 카운터 표시                                           |
+| **6 ~ 10배** | 일일 1회 하드 캡         | 2회째 시도 시 토스트 "오늘 한도 도달, 내일 재시도" 후 큐 거절 (`/api/team/trigger` 400) |
+| **> 10배**   | 1회/3일 + 사전 확인 모달 | "정말 가동하시겠습니까? 토큰 소모 ratio: NN배" 확인                                     |
 
 > 실측 완료 후 위 표에서 해당 행을 굵게 표시하고, 필요 시 `lib/team/scenarios.ts` `ScenarioB.expectedDurationMin`·DB 스키마(`team_triggers.daily_count`)·`/api/team/trigger` 가드를 추가한다.
 
@@ -130,7 +130,7 @@ opus_share    = opus_tokens / scenarioB_total
 
 ## 6. 변경 이력
 
-| 일자 | 변경 |
-|---|---|
+| 일자       | 변경                                                             |
+| ---------- | ---------------------------------------------------------------- |
 | 2026-04-09 | 초기 작성(P2-T08). 측정 절차 + 결과 템플릿 + 정책 표 placeholder |
-| _TBD_ | 첫 실측 결과 반영 |
+| _TBD_      | 첫 실측 결과 반영                                                |

@@ -6,12 +6,12 @@
 
 P1-T17 은 세 가지 서로 다른 성격의 검증을 묶은 태스크다.
 
-| 구분 | 대상 | 자동 가능 여부 |
-|---|---|---|
-| (a) R-13 stale 복구 + FIFO 픽업 | `.claude/hooks/session-start-poll.sh` SQL 로직 | ✅ 자동 (`scripts/test-session-hook.sh`) |
-| (b) Leader 세션 21 Teammate 풀 인식 | `claude` CLI 대화형 세션 | ⚠️ 수동 — Claude Code Leader 세션 외부에서 검증 불가 |
-| (c) `/tiktok-team-status` 슬래시 커맨드 응답 | `.claude/commands/tiktok-team-status.md` | ⚠️ 수동 |
-| (d) 세션 강제 종료 → 재시작 후 복구 | Hook 발동 → (a) 로직 호출 | ⚠️ 수동 (Hook 자체는 자동 검증됨) |
+| 구분                                         | 대상                                           | 자동 가능 여부                                       |
+| -------------------------------------------- | ---------------------------------------------- | ---------------------------------------------------- |
+| (a) R-13 stale 복구 + FIFO 픽업              | `.claude/hooks/session-start-poll.sh` SQL 로직 | ✅ 자동 (`scripts/test-session-hook.sh`)             |
+| (b) Leader 세션 21 Teammate 풀 인식          | `claude` CLI 대화형 세션                       | ⚠️ 수동 — Claude Code Leader 세션 외부에서 검증 불가 |
+| (c) `/tiktok-team-status` 슬래시 커맨드 응답 | `.claude/commands/tiktok-team-status.md`       | ⚠️ 수동                                              |
+| (d) 세션 강제 종료 → 재시작 후 복구          | Hook 발동 → (a) 로직 호출                      | ⚠️ 수동 (Hook 자체는 자동 검증됨)                    |
 
 ## 2. 자동 검증 결과 — (a) R-13 + FIFO
 

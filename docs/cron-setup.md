@@ -8,14 +8,15 @@
 
 ## 1. 구성 요소
 
-| 파일 | 역할 |
-|---|---|
+| 파일                                 | 역할                                                                       |
+| ------------------------------------ | -------------------------------------------------------------------------- |
 | `templates/com.tiktok.analyze.plist` | launchd 에이전트 템플릿. `__PROJECT_ROOT__` / `__HOME__` 플레이스홀더 포함 |
-| `scripts/cron-enqueue-weekly.sh` | sqlite3 CLI 로 `team_triggers` 에 `scenario='C', status='queued'` INSERT |
-| `scripts/install-cron-analyze.sh` | 플레이스홀더 치환 + `~/Library/LaunchAgents/` 복사 + `launchctl load` |
-| `scripts/uninstall-cron-analyze.sh` | `launchctl unload` + plist 제거 |
+| `scripts/cron-enqueue-weekly.sh`     | sqlite3 CLI 로 `team_triggers` 에 `scenario='C', status='queued'` INSERT   |
+| `scripts/install-cron-analyze.sh`    | 플레이스홀더 치환 + `~/Library/LaunchAgents/` 복사 + `launchctl load`      |
+| `scripts/uninstall-cron-analyze.sh`  | `launchctl unload` + plist 제거                                            |
 
 플로우:
+
 ```
 [launchd 매주 월 09:00]
         │
@@ -57,6 +58,7 @@ tmux Leader 세션  (P2-T11 daemon)
 ```
 
 성공 출력 예:
+
 ```
 [install-cron] 설치 완료
   plist  : /Users/jungmo/Library/LaunchAgents/com.tiktok.analyze.plist
@@ -65,6 +67,7 @@ tmux Leader 세션  (P2-T11 daemon)
 ```
 
 등록 확인:
+
 ```bash
 launchctl list | grep com.tiktok.analyze
 ```
@@ -80,6 +83,7 @@ launchctl kickstart -k gui/$(id -u)/com.tiktok.analyze
 ```
 
 확인:
+
 ```bash
 # 1) 로그
 tail -n 20 ~/Library/Logs/tiktok-analyze.log
@@ -106,19 +110,23 @@ tmux capture-pane -t tiktok-leader -p | tail -30
 ## 6. 트러블슈팅
 
 ### Q1. 등록은 됐는데 월요일이 지나도 동작하지 않는다
+
 - macOS 가 sleep 상태였다면 launchd 는 다음 wake 시 catch-up 한다(즉시 한 번만).
 - `pmset -g log` 또는 시스템 로그(`log show --predicate 'subsystem == "com.apple.launchd"' --info --last 1h`)에서 com.tiktok.analyze 항목 확인.
 
 ### Q2. 큐는 들어갔는데 Leader 가 못 잡는다
+
 - `tmux has-session -t tiktok-leader` 가 OK 인지 확인.
 - 아니면 `./scripts/install-leader-daemon.sh` 로 P2-T11 에이전트 재설치.
 - 그래도 안 되면 `.claude/hooks/session-start-poll.sh` 에서 R-13 stale 복구가 동작 중인지 (`recoverStaleRunningTriggers`) 점검.
 
 ### Q3. WAL 모드 충돌이 걱정된다
+
 - `data/db.sqlite` 는 `PRAGMA journal_mode = WAL` 로 초기화되어 있어 sqlite3 CLI(쓰기) ↔ better-sqlite3(읽기/쓰기) 동시성 안전.
 - 동일 트랜잭션 내 `INSERT` 1건만 수행하므로 lock contention 거의 없음.
 
 ### Q4. 다른 요일/시간으로 바꾸고 싶다
+
 - `templates/com.tiktok.analyze.plist` 의 `<key>StartCalendarInterval</key>` 안에서 `Weekday`(1=월~7=일), `Hour`, `Minute` 변경 후 `./scripts/install-cron-analyze.sh` 재실행.
 - 여러 슬롯이 필요하면 `<key>StartCalendarInterval</key><array>...</array>` 형태로 dict 배열을 사용.
 

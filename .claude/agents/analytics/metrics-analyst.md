@@ -61,9 +61,7 @@ tools:
     "love-psychology": { "count": 30, "avgViews": 18200 },
     "money-habits": { "count": 20, "avgViews": 9400 }
   },
-  "topPerformers": [
-    { "jobItemId": "uuid", "topic": "...", "views": 42000 }
-  ],
+  "topPerformers": [{ "jobItemId": "uuid", "topic": "...", "views": 42000 }],
   "warnings": []
 }
 ```
@@ -75,7 +73,7 @@ tools:
 3. 카테고리별·job_item별 집계
 4. 전주/전월 비교치 계산
 5. 표본 3개 미만 카테고리는 `warnings`에 기록
-6. weekly-*-metrics.json 저장 후 Leader에게 "metrics 섹션 완료" 신호
+6. weekly-\*-metrics.json 저장 후 Leader에게 "metrics 섹션 완료" 신호
 
 ## 품질 기준
 

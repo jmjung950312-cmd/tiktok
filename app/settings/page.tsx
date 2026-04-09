@@ -23,17 +23,17 @@ const ALL_TEAMMATES = [
 
 export default function SettingsPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 space-y-6 sm:px-6">
+    <div className="mx-auto max-w-6xl space-y-6 px-4 py-8 sm:px-6">
       <div className="space-y-1">
         <h1 className="text-3xl font-bold">설정</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           팀 Teammate 상태와 기능 요청 폼, 파일/파이프라인 설정을 관리합니다.
         </p>
       </div>
 
-      <Card className="p-6 space-y-3">
+      <Card className="space-y-3 p-6">
         <h2 className="text-lg font-semibold">Teammate 풀</h2>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-muted-foreground text-xs">
           tiktok-ops-team 에 등록된 12명 + 기존 10 범용 에이전트 = 21 풀. 동시 활성 최대 5명.
         </p>
         <div className="flex flex-wrap gap-2">
@@ -47,9 +47,9 @@ export default function SettingsPage() {
 
       <FeatureRequestForm />
 
-      <Card className="p-6 space-y-2">
+      <Card className="space-y-2 p-6">
         <h2 className="text-lg font-semibold">기타 설정</h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           파일 규칙, TTS 프리셋, 배경 카테고리 관리 UI 는 Phase 2 에서 추가됩니다.
         </p>
       </Card>

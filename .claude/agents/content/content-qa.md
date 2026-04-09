@@ -42,6 +42,7 @@ tools:
 ## 출력
 
 ### 1. `data/jobs/[jobId]/content-qa-report.json`
+
 ```json
 {
   "status": "PASS",
@@ -53,7 +54,9 @@ tools:
 ```
 
 ### 2. `data/jobs/[jobId]/final-content.json` — 파이프라인 입력
+
 P0-B3에서 확정한 `FinalContentSchema` 형식 준수(PRD §9.1 참조). P2-T06로 `hookAlternatives` 필드가 추가됨:
+
 ```json
 {
   "jobId": "uuid",

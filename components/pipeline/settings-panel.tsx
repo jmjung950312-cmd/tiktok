@@ -5,11 +5,7 @@
 // Phase 2 P2-T02: 현재 카테고리의 프리셋 저장/적용/초기화 버튼.
 
 import { useState } from 'react';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
@@ -20,17 +16,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from '@/components/ui/toggle-group';
-import {
-  ChevronDown,
-  ChevronUp,
-  Settings2,
-  Save,
-  RotateCcw,
-} from 'lucide-react';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { ChevronDown, ChevronUp, Settings2, Save, RotateCcw } from 'lucide-react';
 import { useSettingsStore } from '@/store/settingsStore';
 import { useCurrentSessionStore } from '@/store/currentSessionStore';
 import { toast } from 'sonner';
@@ -89,13 +76,10 @@ export function SettingsPanel() {
         </div>
 
         <CollapsibleContent className="mt-4">
-          <div className="rounded-lg border bg-card p-4 space-y-5">
+          <div className="bg-card space-y-5 rounded-lg border p-4">
             <div className="space-y-2">
               <Label htmlFor="voice-select">TTS 화자</Label>
-              <Select
-                value={String(voiceId)}
-                onValueChange={(v) => setVoiceId(Number(v))}
-              >
+              <Select value={String(voiceId)} onValueChange={(v) => setVoiceId(Number(v))}>
                 <SelectTrigger id="voice-select" className="w-[200px]">
                   <SelectValue />
                 </SelectTrigger>
@@ -103,7 +87,7 @@ export function SettingsPanel() {
                   <SelectItem value="0">MeloTTS 한국어 (기본)</SelectItem>
                 </SelectContent>
               </Select>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-muted-foreground text-xs">
                 Phase 1 은 MeloTTS 단일 화자. Phase 2 에서 다화자 프리셋 추가 예정.
               </p>
             </div>
@@ -143,9 +127,9 @@ export function SettingsPanel() {
             </div>
 
             {/* Phase 2 P2-T02: 카테고리별 프리셋 */}
-            <div className="border-t pt-4 space-y-2">
+            <div className="space-y-2 border-t pt-4">
               <Label>카테고리 프리셋</Label>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-muted-foreground text-xs">
                 {category
                   ? `현재 선택된 카테고리: "${category}". 이 값들을 기본으로 저장하면 다음에 해당 카테고리를 선택할 때 자동 적용됩니다.`
                   : '카테고리를 먼저 선택해야 프리셋을 저장할 수 있습니다.'}
@@ -159,8 +143,7 @@ export function SettingsPanel() {
                   disabled={!category}
                   aria-label="이 카테고리 기본값으로 저장"
                 >
-                  <Save className="h-4 w-4" />
-                  이 카테고리 기본값으로
+                  <Save className="h-4 w-4" />이 카테고리 기본값으로
                 </Button>
                 <Button
                   variant="ghost"
@@ -175,7 +158,7 @@ export function SettingsPanel() {
                 </Button>
               </div>
               {hasPresetForCurrent && (
-                <p className="text-xs text-muted-foreground">
+                <p className="text-muted-foreground text-xs">
                   ✓ 이 카테고리에 저장된 프리셋이 있습니다.
                 </p>
               )}

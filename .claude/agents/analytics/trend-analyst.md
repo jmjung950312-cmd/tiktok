@@ -42,7 +42,9 @@ tools:
 ## 출력
 
 ### 1. `data/reports/weekly-[yyyy-mm-dd]-analysis.md`
+
 마크다운 리포트 (주간 리포트 최종 파일). 섹션:
+
 - ## 이번 주 요약 (metrics-analyst 숫자 인용)
 - ## 성공 패턴 분석 (훅 유형별, 카테고리별)
 - ## 실패·저조 구간 가설
@@ -50,14 +52,11 @@ tools:
 - ## 권고 조치 (prompt-tuner에게 넘길 개선 포인트)
 
 ### 2. `data/reports/weekly-[yyyy-mm-dd]-recommendations.json` (RecommendationPanel용)
+
 ```json
 {
-  "nextTopics": [
-    { "title": "...", "category": "...", "reason": "...", "hookType": "reversal" }
-  ],
-  "winningHookPatterns": [
-    { "type": "question", "avgViews": 18000, "example": "..." }
-  ]
+  "nextTopics": [{ "title": "...", "category": "...", "reason": "...", "hookType": "reversal" }],
+  "winningHookPatterns": [{ "type": "question", "avgViews": 18000, "example": "..." }]
 }
 ```
 
@@ -67,7 +66,7 @@ tools:
 2. 상위/하위 아이템의 topic·hook·category 크로스 분석
 3. (선택) WebSearch로 최근 2주 외부 트렌드 확인
 4. 다음 주 Top-5 주제 도출 (성공 패턴 + 외부 트렌드 결합)
-5. weekly-*-analysis.md + weekly-*-recommendations.json 저장
+5. weekly-_-analysis.md + weekly-_-recommendations.json 저장
 6. Leader에게 시나리오 D 연쇄 트리거(P0-B1 §8.4.1 절차) 권고 여부 알림
 
 ## 품질 기준

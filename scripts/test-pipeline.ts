@@ -91,16 +91,12 @@ async function fakeVoiceSingle(
   }
 
   const listFile = path.join(itemDir, 'concat.txt');
-  writeFileSync(
-    listFile,
-    segmentTimings.map((s) => `file '${s.audioPath}'`).join('\n'),
-    'utf-8',
-  );
+  writeFileSync(listFile, segmentTimings.map((s) => `file '${s.audioPath}'`).join('\n'), 'utf-8');
   const concatWav = path.join(itemDir, 'voice.wav');
-  await spawnFfmpeg(
-    ['-y', '-f', 'concat', '-safe', '0', '-i', listFile, '-c', 'copy', concatWav],
-    { capture: true, timeoutMs: 60_000 },
-  );
+  await spawnFfmpeg(['-y', '-f', 'concat', '-safe', '0', '-i', listFile, '-c', 'copy', concatWav], {
+    capture: true,
+    timeoutMs: 60_000,
+  });
   const totalMs = await readMediaDurationMs(concatWav);
   return { audioPath: concatWav, totalMs, segmentTimings };
 }
@@ -115,11 +111,7 @@ async function main(): Promise<void> {
   mkdirSync(tempDir, { recursive: true });
   mkdirSync(outputDir, { recursive: true });
 
-  writeFileSync(
-    path.join(jobDir, 'final-content.json'),
-    JSON.stringify(content, null, 2),
-    'utf-8',
-  );
+  writeFileSync(path.join(jobDir, 'final-content.json'), JSON.stringify(content, null, 2), 'utf-8');
 
   console.log(`[test-pipeline] jobId=${jobId} mode=${useNoTts ? 'no-tts(sine)' : 'melo'}`);
 

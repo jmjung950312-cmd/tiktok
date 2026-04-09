@@ -69,7 +69,9 @@ async function main(): Promise<number> {
     try {
       const r = await runOnce(i);
       results.push(r);
-      console.log(`  ${String(i).padStart(2, ' ')}/${ITERATIONS}: ${formatMs(r.ms)} → ${path.basename(r.audioPath)} (duration ${r.durationMs}ms)`);
+      console.log(
+        `  ${String(i).padStart(2, ' ')}/${ITERATIONS}: ${formatMs(r.ms)} → ${path.basename(r.audioPath)} (duration ${r.durationMs}ms)`,
+      );
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
       console.error(`  ${i}/${ITERATIONS} FAIL: ${msg}`);
@@ -90,20 +92,26 @@ async function main(): Promise<number> {
   console.log('[warm-keep] 집계');
   console.log(`  1회차(콜드)        : ${formatMs(firstMs)}`);
   console.log(`  2~${ITERATIONS}회차 평균     : ${formatMs(restAvg)}`);
-  console.log(`  2~${ITERATIONS}회차 min/p50/max: ${formatMs(restMin)} / ${formatMs(restP50)} / ${formatMs(restMax)}`);
+  console.log(
+    `  2~${ITERATIONS}회차 min/p50/max: ${formatMs(restMin)} / ${formatMs(restP50)} / ${formatMs(restMax)}`,
+  );
   console.log(`  단축률             : ${reduction.toFixed(1)}%`);
   console.log('');
 
   await shutdownMeloDaemonForTest();
 
   if (mode.startsWith('daemon') && reduction < 30) {
-    console.error(`[warm-keep] FAIL: 단축률 ${reduction.toFixed(1)}% < 30% (Phase 2 필수 조건 미달)`);
+    console.error(
+      `[warm-keep] FAIL: 단축률 ${reduction.toFixed(1)}% < 30% (Phase 2 필수 조건 미달)`,
+    );
     return 2;
   }
 
-  console.log(mode.startsWith('daemon')
-    ? `[warm-keep] PASS: 단축률 ${reduction.toFixed(1)}% ≥ 30%`
-    : `[warm-keep] 폴백 경로 측정 완료 — 목표 없음(비교용)`);
+  console.log(
+    mode.startsWith('daemon')
+      ? `[warm-keep] PASS: 단축률 ${reduction.toFixed(1)}% ≥ 30%`
+      : `[warm-keep] 폴백 경로 측정 완료 — 목표 없음(비교용)`,
+  );
   return 0;
 }
 

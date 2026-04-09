@@ -23,11 +23,23 @@ interface Case {
 }
 
 const cases: Case[] = [
-  { name: 'sentences 5개', input: { itemIndex: 0, newSentences: ['a','b','c','d','e'] }, expectOk: true },
+  {
+    name: 'sentences 5개',
+    input: { itemIndex: 0, newSentences: ['a', 'b', 'c', 'd', 'e'] },
+    expectOk: true,
+  },
   { name: 'newHook 만', input: { itemIndex: 2, newHook: '훅' }, expectOk: true },
   { name: '둘 다 없음', input: { itemIndex: 1 }, expectOk: false },
-  { name: '둘 다 있음', input: { itemIndex: 0, newSentences: ['a','b','c','d','e'], newHook: 'x' }, expectOk: false },
-  { name: 'sentences 4개', input: { itemIndex: 0, newSentences: ['a','b','c','d'] }, expectOk: false },
+  {
+    name: '둘 다 있음',
+    input: { itemIndex: 0, newSentences: ['a', 'b', 'c', 'd', 'e'], newHook: 'x' },
+    expectOk: false,
+  },
+  {
+    name: 'sentences 4개',
+    input: { itemIndex: 0, newSentences: ['a', 'b', 'c', 'd'] },
+    expectOk: false,
+  },
   { name: 'itemIndex 5', input: { itemIndex: 5, newHook: 'x' }, expectOk: false },
   { name: 'itemIndex -1', input: { itemIndex: -1, newHook: 'x' }, expectOk: false },
   { name: 'newHook 빈 문자열', input: { itemIndex: 0, newHook: '' }, expectOk: false },
@@ -38,7 +50,9 @@ let fail = 0;
 for (const c of cases) {
   const result = RerenderBodySchema.safeParse(c.input);
   const ok = result.success === c.expectOk;
-  console.log(`${ok ? 'PASS' : 'FAIL'} - ${c.name} (success=${result.success}, expected=${c.expectOk})`);
+  console.log(
+    `${ok ? 'PASS' : 'FAIL'} - ${c.name} (success=${result.success}, expected=${c.expectOk})`,
+  );
   if (!result.success) {
     console.log('       issues:', result.error.issues.map((i) => i.message).join('; '));
   }

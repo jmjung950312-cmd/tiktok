@@ -100,7 +100,7 @@ export const CATEGORY_QUERY_MAP: Record<string, string[]> = {
   'love-psychology': ['couple walking', 'city night', 'holding hands'],
   'unknown-facts': ['nature macro', 'space stars', 'abstract pattern'],
   'money-habits': ['keyboard typing', 'desk workspace', 'coffee laptop'],
-  'relationships': ['friends talking', 'group cafe', 'city park'],
+  relationships: ['friends talking', 'group cafe', 'city park'],
   'self-improvement': ['sunrise running', 'book reading', 'mountain hike'],
 };
 
@@ -134,10 +134,7 @@ interface PexelsSearchResponse {
 }
 
 /** Pexels Video Search API 호출. 무료 티어(200 req/시간, 20K req/월). */
-async function searchPexelsVideos(
-  query: string,
-  apiKey: string,
-): Promise<PexelsVideo[]> {
+async function searchPexelsVideos(query: string, apiKey: string): Promise<PexelsVideo[]> {
   const url = `https://api.pexels.com/videos/search?query=${encodeURIComponent(query)}&orientation=portrait&size=medium&per_page=5`;
   const res = await fetch(url, {
     headers: { Authorization: apiKey },
@@ -152,19 +149,13 @@ async function searchPexelsVideos(
 /** Pexels video_files 중 9:16 세로형 mp4 + medium 품질을 우선. */
 function pickBestPortraitFile(video: PexelsVideo): PexelsVideoFile | null {
   const portraitMp4s = video.video_files.filter(
-    (f) =>
-      f.file_type === 'video/mp4' &&
-      f.width > 0 &&
-      f.height > 0 &&
-      f.height > f.width, // 세로형
+    (f) => f.file_type === 'video/mp4' && f.width > 0 && f.height > 0 && f.height > f.width, // 세로형
   );
   if (portraitMp4s.length === 0) return null;
 
   // medium > hd > sd > uhd 우선 (파일 크기 vs 품질 균형)
   const byQuality: Record<string, number> = { medium: 4, hd: 3, sd: 2, uhd: 1 };
-  portraitMp4s.sort(
-    (a, b) => (byQuality[b.quality] ?? 0) - (byQuality[a.quality] ?? 0),
-  );
+  portraitMp4s.sort((a, b) => (byQuality[b.quality] ?? 0) - (byQuality[a.quality] ?? 0));
   return portraitMp4s[0];
 }
 
@@ -175,7 +166,9 @@ async function downloadToFile(url: string, destPath: string): Promise<void> {
     throw new Error(`[background] 다운로드 실패 ${res.status}: ${url}`);
   }
   mkdirSync(path.dirname(destPath), { recursive: true });
-  const stream = Readable.fromWeb(res.body as unknown as import('node:stream/web').ReadableStream<Uint8Array>);
+  const stream = Readable.fromWeb(
+    res.body as unknown as import('node:stream/web').ReadableStream<Uint8Array>,
+  );
   await pipeline(stream, createWriteStream(destPath));
 }
 
@@ -183,9 +176,7 @@ async function downloadToFile(url: string, destPath: string): Promise<void> {
  * 카테고리 하나에 대해 Pexels API 호출 → 첫 결과 mp4를 _cache 에 저장 → 경로 반환.
  * apiKey 부재 시 null 반환(호출측에서 폴백 처리).
  */
-async function fetchFromPexels(
-  category: string,
-): Promise<string | null> {
+async function fetchFromPexels(category: string): Promise<string | null> {
   const apiKey = process.env.PEXELS_API_KEY;
   if (!apiKey) return null;
 

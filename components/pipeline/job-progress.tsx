@@ -100,15 +100,7 @@ export function JobProgress() {
       cancelled = true;
       clearInterval(id);
     };
-  }, [
-    pollingEnabled,
-    triggerId,
-    jobId,
-    setCurrentJobId,
-    setPollingEnabled,
-    upsertDetail,
-    team,
-  ]);
+  }, [pollingEnabled, triggerId, jobId, setCurrentJobId, setPollingEnabled, upsertDetail, team]);
 
   if (!triggerId) {
     return (
@@ -116,7 +108,7 @@ export function JobProgress() {
         <h2 id="job-progress-title" className="text-xl font-semibold">
           4. 진행 상태
         </h2>
-        <Card className="p-6 text-center text-sm text-muted-foreground">
+        <Card className="text-muted-foreground p-6 text-center text-sm">
           아직 트리거가 없습니다. 위에서 &quot;5개 자동 생성&quot; 버튼을 눌러 시작하세요.
         </Card>
       </section>
@@ -140,7 +132,7 @@ export function JobProgress() {
         4. 진행 상태
       </h2>
 
-      <Card className="p-5 space-y-4">
+      <Card className="space-y-4 p-5">
         <div className="space-y-1">
           <div className="flex items-center justify-between text-sm">
             <span>전체 진행률</span>
@@ -150,9 +142,7 @@ export function JobProgress() {
         </div>
 
         <div>
-          <p className="text-xs text-muted-foreground mb-2">
-            Teammate 상태 (시나리오 A 5명)
-          </p>
+          <p className="text-muted-foreground mb-2 text-xs">Teammate 상태 (시나리오 A 5명)</p>
           <TeammateStatus
             activeTeammates={team.activeTeammates}
             completedTeammates={team.completedTeammates}
@@ -162,7 +152,7 @@ export function JobProgress() {
 
         {detail && (
           <div>
-            <p className="text-xs text-muted-foreground mb-2">아이템 단계</p>
+            <p className="text-muted-foreground mb-2 text-xs">아이템 단계</p>
             <div className="flex flex-wrap gap-2">
               {detail.items.map((item) => (
                 <Badge
@@ -177,8 +167,7 @@ export function JobProgress() {
                           : 'outline'
                   }
                 >
-                  #{item.index + 1} · {STAGE_LABEL[item.stage] ?? item.stage} ·{' '}
-                  {item.progress}%
+                  #{item.index + 1} · {STAGE_LABEL[item.stage] ?? item.stage} · {item.progress}%
                 </Badge>
               ))}
             </div>

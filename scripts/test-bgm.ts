@@ -134,7 +134,7 @@ async function main(): Promise<number> {
     outputDir: OUT_DIR,
     backgroundPathOverride: bgPath,
     backgroundStartOffsetSec: 0,
-    bgmPathOverride: disableBgm ? null : pickRandomBgm() ?? undefined,
+    bgmPathOverride: disableBgm ? null : (pickRandomBgm() ?? undefined),
   });
 
   // 7) 검증

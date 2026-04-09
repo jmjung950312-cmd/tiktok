@@ -18,9 +18,7 @@ export function TeammateStatus({
   completedTeammates,
   failed = false,
 }: TeammateStatusProps) {
-  const resolveState = (
-    name: string,
-  ): 'pending' | 'running' | 'completed' | 'failed' => {
+  const resolveState = (name: string): 'pending' | 'running' | 'completed' | 'failed' => {
     if (failed && activeTeammates.includes(name)) return 'failed';
     if (activeTeammates.includes(name)) return 'running';
     if (completedTeammates.includes(name)) return 'completed';
@@ -33,11 +31,7 @@ export function TeammateStatus({
         const state = resolveState(name);
         const { icon, variant, cls } = getBadgeStyle(state);
         return (
-          <Badge
-            key={name}
-            variant={variant}
-            className={cn('gap-1 px-2 py-0.5 text-xs', cls)}
-          >
+          <Badge key={name} variant={variant} className={cn('gap-1 px-2 py-0.5 text-xs', cls)}>
             <span aria-hidden>{icon}</span>
             {name}
           </Badge>
@@ -47,9 +41,11 @@ export function TeammateStatus({
   );
 }
 
-function getBadgeStyle(
-  state: 'pending' | 'running' | 'completed' | 'failed',
-): { icon: string; variant: 'default' | 'secondary' | 'destructive' | 'outline'; cls: string } {
+function getBadgeStyle(state: 'pending' | 'running' | 'completed' | 'failed'): {
+  icon: string;
+  variant: 'default' | 'secondary' | 'destructive' | 'outline';
+  cls: string;
+} {
   switch (state) {
     case 'running':
       return { icon: '🔵', variant: 'default', cls: 'animate-pulse' };

@@ -35,7 +35,7 @@ export function VideoCard({ jobId, item, onRegenerate }: VideoCardProps) {
   const hook = script?.hook ?? null;
   const hookAlternatives = script?.hookAlternatives ?? null;
 
-  const filename = item.outputPath ? item.outputPath.split('/').pop() ?? null : null;
+  const filename = item.outputPath ? (item.outputPath.split('/').pop() ?? null) : null;
   const src = filename ? `/api/outputs/${encodeURIComponent(filename)}` : null;
   // P2-T05: 파일 명명 규칙 <stem>.mp4 → <stem>_thumb.jpg 로 썸네일 URL 유추.
   // 백엔드에서 추출 실패한 경우 404가 되며 <video poster>는 자연스럽게 빈 화면이 된다.
@@ -82,7 +82,7 @@ export function VideoCard({ jobId, item, onRegenerate }: VideoCardProps) {
 
   return (
     <Card className="flex flex-col overflow-hidden">
-      <div className="aspect-[9/16] bg-muted flex items-center justify-center">
+      <div className="bg-muted flex aspect-[9/16] items-center justify-center">
         {src ? (
           <video
             src={src}
@@ -92,7 +92,7 @@ export function VideoCard({ jobId, item, onRegenerate }: VideoCardProps) {
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="text-center text-xs text-muted-foreground px-3">
+          <div className="text-muted-foreground px-3 text-center text-xs">
             <div>아이템 #{item.index + 1}</div>
             <div className="mt-1">
               {item.status === 'failed' ? '실패' : `${item.progress}% (${item.stage})`}
@@ -101,7 +101,7 @@ export function VideoCard({ jobId, item, onRegenerate }: VideoCardProps) {
         )}
       </div>
 
-      <div className="p-3 space-y-2">
+      <div className="space-y-2 p-3">
         <div className="flex items-center justify-between text-xs">
           <span className="font-semibold">#{item.index + 1}</span>
           <Badge
@@ -138,21 +138,11 @@ export function VideoCard({ jobId, item, onRegenerate }: VideoCardProps) {
             sentences={sentences}
             onRequested={() => onRegenerate?.(item.index)}
           />
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleCopyCaption}
-            disabled={!item.caption}
-          >
+          <Button variant="outline" size="sm" onClick={handleCopyCaption} disabled={!item.caption}>
             <ClipboardCopy className="mr-1 h-3 w-3" />
             캡션
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            asChild
-            disabled={!src}
-          >
+          <Button variant="outline" size="sm" asChild disabled={!src}>
             {src ? (
               <a href={src} download={filename ?? undefined}>
                 <Download className="mr-1 h-3 w-3" />
@@ -165,12 +155,7 @@ export function VideoCard({ jobId, item, onRegenerate }: VideoCardProps) {
               </span>
             )}
           </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleRegenerate}
-            disabled={regenerating}
-          >
+          <Button variant="ghost" size="sm" onClick={handleRegenerate} disabled={regenerating}>
             <RotateCcw className="mr-1 h-3 w-3" />
             재생성
           </Button>

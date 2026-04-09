@@ -1,0 +1,38 @@
+# Node
+node_modules
+
+# Next.js 빌드 산출물
+.next
+out
+build
+coverage
+
+# 프로젝트 데이터 (gitignore와 일치)
+data
+.venv
+.shrimp_data
+assets/backgrounds
+assets/bgm
+
+# 미디어 바이너리
+*.mp4
+*.wav
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# Next.js 자동 생성
+next-env.d.ts
+
+# 잠금 파일 (포맷 강제 금지)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Plan 파일 (로컬 전용)
+.claude/plans
+
+# Hook 로그
+.claude/logs/*.jsonl
+.claude/logs/.edit-flag-*

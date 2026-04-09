@@ -121,11 +121,9 @@ function checkMeloImport(): CheckResult {
       hint: `bash scripts/setup-melo.sh 먼저 실행`,
     };
   }
-  const res = spawnSync(
-    pythonBin,
-    ['-c', 'import melo; import melo.api; print("melo-ok")'],
-    { encoding: 'utf-8' },
-  );
+  const res = spawnSync(pythonBin, ['-c', 'import melo; import melo.api; print("melo-ok")'], {
+    encoding: 'utf-8',
+  });
   if (res.status !== 0) {
     return {
       name: 'MeloTTS import',

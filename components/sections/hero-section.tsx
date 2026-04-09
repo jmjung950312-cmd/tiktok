@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 
 export function HeroSection() {
   return (
-    <section className="py-20 sm:py-28 text-center">
+    <section className="py-20 text-center sm:py-28">
       <Badge variant="outline" className="mb-6">
         Next.js 16 + ShadcnUI v4로 제작
       </Badge>
@@ -13,11 +13,11 @@ export function HeroSection() {
         <br />
         <span className="text-muted-foreground">모던 웹 스타터킷</span>
       </h1>
-      <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
-        Next.js 16, TypeScript, TailwindCSS v4, ShadcnUI v4로 구성된 범용 스타터킷입니다.
-        다크모드, 반응형 레이아웃, 폼 처리 등 웹 개발에 필요한 모든 기반이 갖춰져 있습니다.
+      <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg">
+        Next.js 16, TypeScript, TailwindCSS v4, ShadcnUI v4로 구성된 범용 스타터킷입니다. 다크모드,
+        반응형 레이아웃, 폼 처리 등 웹 개발에 필요한 모든 기반이 갖춰져 있습니다.
       </p>
-      <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
         <Button asChild size="lg">
           <Link href="/#features">기능 살펴보기</Link>
         </Button>

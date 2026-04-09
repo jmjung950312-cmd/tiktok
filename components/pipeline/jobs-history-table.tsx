@@ -64,7 +64,7 @@ export function JobsHistoryTable() {
 
   if (jobs.length === 0) {
     return (
-      <Card className="p-6 text-center text-sm text-muted-foreground">
+      <Card className="text-muted-foreground p-6 text-center text-sm">
         아직 생성된 잡이 없습니다. 대시보드에서 &quot;5개 자동 생성&quot; 을 실행해 보세요.
       </Card>
     );
@@ -96,7 +96,7 @@ export function JobsHistoryTable() {
               <TableCell>
                 <Link
                   href={`/?triggerId=${job.triggerId}`}
-                  className="text-xs text-primary underline"
+                  className="text-primary text-xs underline"
                 >
                   {job.triggerId.slice(0, 8)}…
                 </Link>

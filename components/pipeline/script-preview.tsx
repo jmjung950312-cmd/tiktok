@@ -33,24 +33,20 @@ export function ScriptPreview({ hook, sentences, caption, itemIndex }: ScriptPre
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <DialogTitle>아이템 #{itemIndex + 1} 대본</DialogTitle>
-          <DialogDescription>
-            hook-critic 승인(PASS) 후의 최종 대본입니다.
-          </DialogDescription>
+          <DialogDescription>hook-critic 승인(PASS) 후의 최종 대본입니다.</DialogDescription>
         </DialogHeader>
         <div className="space-y-4 text-sm">
           {hook && (
             <div>
-              <p className="text-xs font-semibold text-muted-foreground mb-1">훅 (첫 3초)</p>
-              <p className="rounded-md bg-primary/5 border border-primary/20 px-3 py-2">
-                {hook}
-              </p>
+              <p className="text-muted-foreground mb-1 text-xs font-semibold">훅 (첫 3초)</p>
+              <p className="bg-primary/5 border-primary/20 rounded-md border px-3 py-2">{hook}</p>
             </div>
           )}
           <div>
-            <p className="text-xs font-semibold text-muted-foreground mb-1">
+            <p className="text-muted-foreground mb-1 text-xs font-semibold">
               5문장 대본 ({sentences.length}개)
             </p>
-            <ol className="list-decimal list-inside space-y-1">
+            <ol className="list-inside list-decimal space-y-1">
               {sentences.map((s, i) => (
                 <li key={i} className="text-sm">
                   {s}
@@ -60,8 +56,8 @@ export function ScriptPreview({ hook, sentences, caption, itemIndex }: ScriptPre
           </div>
           {caption && (
             <div>
-              <p className="text-xs font-semibold text-muted-foreground mb-1">캡션</p>
-              <p className="rounded-md bg-muted px-3 py-2 whitespace-pre-wrap">{caption}</p>
+              <p className="text-muted-foreground mb-1 text-xs font-semibold">캡션</p>
+              <p className="bg-muted rounded-md px-3 py-2 whitespace-pre-wrap">{caption}</p>
             </div>
           )}
         </div>

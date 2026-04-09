@@ -35,6 +35,7 @@ tools:
 ## 입력
 
 Leader가 전달하는 JSON 컨텍스트:
+
 - `category`: 예 `"love-psychology"`, `"money-habits"`
 - `count`: 항상 5 (Phase 1 고정)
 - `jobId`: UUID
@@ -44,6 +45,7 @@ Leader가 전달하는 JSON 컨텍스트:
 파일 경로: `data/jobs/[jobId]/trend-scout-draft.json`
 
 형식:
+
 ```json
 {
   "category": "love-psychology",

@@ -13,7 +13,8 @@ export async function POST(_request: Request, context: RouteContext): Promise<Re
   return NextResponse.json({
     status: 'stub',
     phase: 3,
-    message: 'Phase 3 prompt-tuner 승인 플로우 완성 후 활성화됩니다. P0-C1 / R-19 자동 브랜치 정책 준수.',
+    message:
+      'Phase 3 prompt-tuner 승인 플로우 완성 후 활성화됩니다. P0-C1 / R-19 자동 브랜치 정책 준수.',
     id,
   });
 }

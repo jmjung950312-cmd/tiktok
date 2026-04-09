@@ -22,6 +22,7 @@
 ```
 
 **실행되는 일**:
+
 1. `templates/com.tiktok.leader.plist`의 `__PROJECT_ROOT__` / `__HOME__` 플레이스홀더를 실제 절대경로로 치환
 2. `~/Library/LaunchAgents/com.tiktok.leader.plist`에 복사
 3. `launchctl load`로 에이전트 등록 → 즉시 1회 실행(`RunAtLoad: true`)
@@ -84,9 +85,11 @@ launchctl kickstart -k gui/$(id -u)/com.tiktok.leader
 ```
 
 **옵션**:
+
 - `--keep-session`: launchd 에이전트만 제거하고 tmux 세션은 계속 유지
 
 **실행되는 일**:
+
 1. `launchctl unload ~/Library/LaunchAgents/com.tiktok.leader.plist`
 2. plist 파일 삭제
 3. (기본) `tmux kill-session -t tiktok-leader`
@@ -95,13 +98,13 @@ launchctl kickstart -k gui/$(id -u)/com.tiktok.leader
 
 ## 6. 문제 해결
 
-| 증상 | 원인 | 해결 |
-|---|---|---|
-| `launchctl list \| grep com.tiktok.leader` 출력 없음 | plist 파싱 실패 | `plutil -lint ~/Library/LaunchAgents/com.tiktok.leader.plist` 로 문법 확인 |
-| `tmux: command not found` | tmux 미설치 | `brew install tmux` |
-| `claude: command not found` (로그에 기록) | launchd가 PATH를 못 찾음 | plist의 `EnvironmentVariables.PATH`에 claude 설치 경로 추가 (`which claude` 로 확인) |
-| 세션은 있는데 Leader 응답 없음 | claude 세션 자체 문제 | `tmux attach -t tiktok-leader`로 들어가 상태 확인 → 필요시 kickstart |
-| R-13 stale trigger 적체 | session-start-poll.sh 미실행 | `.claude/hooks/session-start-poll.sh` 직접 실행 후 로그 확인 (P1-T07 참조) |
+| 증상                                                 | 원인                         | 해결                                                                                 |
+| ---------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------ |
+| `launchctl list \| grep com.tiktok.leader` 출력 없음 | plist 파싱 실패              | `plutil -lint ~/Library/LaunchAgents/com.tiktok.leader.plist` 로 문법 확인           |
+| `tmux: command not found`                            | tmux 미설치                  | `brew install tmux`                                                                  |
+| `claude: command not found` (로그에 기록)            | launchd가 PATH를 못 찾음     | plist의 `EnvironmentVariables.PATH`에 claude 설치 경로 추가 (`which claude` 로 확인) |
+| 세션은 있는데 Leader 응답 없음                       | claude 세션 자체 문제        | `tmux attach -t tiktok-leader`로 들어가 상태 확인 → 필요시 kickstart                 |
+| R-13 stale trigger 적체                              | session-start-poll.sh 미실행 | `.claude/hooks/session-start-poll.sh` 직접 실행 후 로그 확인 (P1-T07 참조)           |
 
 ---
 

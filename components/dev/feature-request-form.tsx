@@ -103,12 +103,12 @@ export function FeatureRequestForm() {
   };
 
   return (
-    <Card className="p-6 space-y-4">
+    <Card className="space-y-4 p-6">
       <div className="space-y-1">
         <h2 className="text-lg font-semibold">기능 요청 / 버그 리포트 (시나리오 B)</h2>
-        <p className="text-xs text-muted-foreground">
-          frontend-builder + backend-builder + code-reviewer 3명에게 계획 승인 모드로 위임.
-          Leader 세션이 큐에서 집어가는 즉시 가동됩니다.
+        <p className="text-muted-foreground text-xs">
+          frontend-builder + backend-builder + code-reviewer 3명에게 계획 승인 모드로 위임. Leader
+          세션이 큐에서 집어가는 즉시 가동됩니다.
         </p>
       </div>
 
@@ -116,22 +116,17 @@ export function FeatureRequestForm() {
         <AlertTriangle className="h-4 w-4" />
         <AlertTitle>R-15 토큰 주의</AlertTitle>
         <AlertDescription>
-          plan mode × Opus 3중첩으로 토큰 소비가 큽니다(실측 리포트 docs/r15-scenario-b-measurement.md).
-          하루 1~2회 사용을 권장하며 dev 서버는 가동 중 일시 정지해 주세요.
+          plan mode × Opus 3중첩으로 토큰 소비가 큽니다(실측 리포트
+          docs/r15-scenario-b-measurement.md). 하루 1~2회 사용을 권장하며 dev 서버는 가동 중 일시
+          정지해 주세요.
         </AlertDescription>
       </Alert>
 
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-2">
           <Label htmlFor="fr-title">제목</Label>
-          <Input
-            id="fr-title"
-            placeholder="예: 다크 모드 토글 추가"
-            {...register('title')}
-          />
-          {errors.title && (
-            <p className="text-xs text-destructive">{errors.title.message}</p>
-          )}
+          <Input id="fr-title" placeholder="예: 다크 모드 토글 추가" {...register('title')} />
+          {errors.title && <p className="text-destructive text-xs">{errors.title.message}</p>}
         </div>
 
         <div className="space-y-2">
@@ -143,7 +138,7 @@ export function FeatureRequestForm() {
             {...register('description')}
           />
           {errors.description && (
-            <p className="text-xs text-destructive">{errors.description.message}</p>
+            <p className="text-destructive text-xs">{errors.description.message}</p>
           )}
         </div>
 

@@ -34,18 +34,22 @@ description: 현재 team_triggers 상태, active_teammates, 최근 잡 요약을
 ## 🎬 tiktok-ops-team 상태 (2026-04-09 01:30)
 
 ### 최근 트리거 10건
+
 | trigger_id | scenario | status | active_teammates | created | started |
 | ... | ... | ... | ... | ... | ... |
 
 ### 진행 중 잡
+
 | job_id | category | status | created |
 | ... | ... | ... | ... |
 
 ### 처리 중 아이템
+
 | job | item_index | stage | progress | status |
 | ... | ... | ... | ... | ... |
 
 ### 경고
+
 - (있으면 여기)
 ```
 

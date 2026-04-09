@@ -36,11 +36,11 @@ ohajo-sim
 
 ## 최종 판정
 
-| 항목 | 기대값 | 실제값 | 판정 |
-|---|---|---|---|
-| `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` | `"1"` | `"1"` | PASS |
-| `claude --version` | `≥ 2.1.32` | `2.1.85` | PASS |
-| `~/.claude/teams/` 비어 있지 않음 | 1개 이상 | 3개 | PASS |
+| 항목                                   | 기대값     | 실제값   | 판정 |
+| -------------------------------------- | ---------- | -------- | ---- |
+| `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` | `"1"`      | `"1"`    | PASS |
+| `claude --version`                     | `≥ 2.1.32` | `2.1.85` | PASS |
+| `~/.claude/teams/` 비어 있지 않음      | 1개 이상   | 3개      | PASS |
 
 **→ P0-E1 전체 PASS. P0-POC 선행 조건 충족.**
 
@@ -72,13 +72,13 @@ prd-validator.md
 
 ### 파일 개수 대조
 
-| 위치 | 기대 | 실제 | 파일명 |
-|---|---|---|---|
-| 루트 | 2 | 2 | `nextjs-supabase-expert.md`, `ui-markup-specialist.md` |
-| `design/` | 3 | 3 | `ui-designer.md`, `ui-implementer.md`, `ui-researcher.md` |
-| `dev/` | 3 | 3 | `code-reviewer.md`, `development-planner.md`, `nextjs-app-developer.md` |
-| `docs/` | 2 | 2 | `prd-generator.md`, `prd-validator.md` |
-| **합계** | **10** | **10** | **PASS** |
+| 위치      | 기대   | 실제   | 파일명                                                                  |
+| --------- | ------ | ------ | ----------------------------------------------------------------------- |
+| 루트      | 2      | 2      | `nextjs-supabase-expert.md`, `ui-markup-specialist.md`                  |
+| `design/` | 3      | 3      | `ui-designer.md`, `ui-implementer.md`, `ui-researcher.md`               |
+| `dev/`    | 3      | 3      | `code-reviewer.md`, `development-planner.md`, `nextjs-app-developer.md` |
+| `docs/`   | 2      | 2      | `prd-generator.md`, `prd-validator.md`                                  |
+| **합계**  | **10** | **10** | **PASS**                                                                |
 
 ### Phase 1 P1-T05 참조 정보
 

@@ -73,8 +73,7 @@ export function GenerateButton() {
     }
   };
 
-  const selectedLabel =
-    CATEGORIES.find((c) => c.code === category)?.label ?? '카테고리 미선택';
+  const selectedLabel = CATEGORIES.find((c) => c.code === category)?.label ?? '카테고리 미선택';
 
   return (
     <section aria-labelledby="generate-button-title" className="space-y-3">
@@ -82,8 +81,8 @@ export function GenerateButton() {
         3. 자동 생성
       </h2>
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div className="text-sm text-muted-foreground">
-          현재 선택: <span className="font-medium text-foreground">{selectedLabel}</span>
+        <div className="text-muted-foreground text-sm">
+          현재 선택: <span className="text-foreground font-medium">{selectedLabel}</span>
         </div>
         <Button
           size="lg"

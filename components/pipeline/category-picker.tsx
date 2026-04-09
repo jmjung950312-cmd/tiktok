@@ -29,7 +29,7 @@ export function CategoryPicker() {
         <h2 id="category-picker-title" className="text-xl font-semibold">
           1. 카테고리 선택
         </h2>
-        <span className="text-xs text-muted-foreground">5개 중 하나를 선택하세요</span>
+        <span className="text-muted-foreground text-xs">5개 중 하나를 선택하세요</span>
       </div>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
@@ -49,18 +49,14 @@ export function CategoryPicker() {
                 }
               }}
               className={cn(
-                'cursor-pointer p-4 transition-all hover:border-primary hover:shadow-sm',
-                selected && 'border-primary ring-2 ring-primary/30 bg-primary/5',
+                'hover:border-primary cursor-pointer p-4 transition-all hover:shadow-sm',
+                selected && 'border-primary ring-primary/30 bg-primary/5 ring-2',
               )}
             >
               <div className="text-3xl leading-none">{c.emoji}</div>
               <div className="mt-3 font-medium">{c.label}</div>
-              <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
-                {c.description}
-              </p>
-              {selected && (
-                <div className="mt-2 text-xs font-medium text-primary">✓ 선택됨</div>
-              )}
+              <p className="text-muted-foreground mt-1 line-clamp-2 text-xs">{c.description}</p>
+              {selected && <div className="text-primary mt-2 text-xs font-medium">✓ 선택됨</div>}
             </Card>
           );
         })}

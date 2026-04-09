@@ -45,6 +45,7 @@ tools:
 ## 출력
 
 ### DB: `prompt_changes` 테이블 INSERT
+
 ```sql
 INSERT INTO prompt_changes (id, target_file, diff, rationale, status, proposed_at)
 VALUES (
@@ -58,6 +59,7 @@ VALUES (
 ```
 
 ### (선택) `data/reports/prompt-suggestions-[yyyy-mm-dd].md`
+
 사용자가 승인 UI에서 보기 쉽게 요약한 마크다운.
 
 ## 작업 프로세스

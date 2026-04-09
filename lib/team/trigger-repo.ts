@@ -16,10 +16,7 @@ import {
   type TeamTriggerRow,
 } from '@/lib/db/repo';
 import { SCENARIOS } from './scenarios';
-import {
-  TeamTriggerPayloadSchema,
-  type TeamTriggerPayload,
-} from './types';
+import { TeamTriggerPayloadSchema, type TeamTriggerPayload } from './types';
 
 /**
  * 트리거 insert. 반드시 payload가 TeamTriggerPayloadSchema를 통과해야 하며,

@@ -125,7 +125,9 @@ async function runMockE2E(): Promise<void> {
     // DoD 6 일부: 트리거 INSERT
     const trig = await postTrigger();
     console.log(`  triggerId=${trig.triggerId.slice(0, 8)}…`);
-    passes.push(`[DoD 6] POST /api/team/trigger → queued (triggerId=${trig.triggerId.slice(0, 8)})`);
+    passes.push(
+      `[DoD 6] POST /api/team/trigger → queued (triggerId=${trig.triggerId.slice(0, 8)})`,
+    );
 
     const triggerRow = getTriggerById(trig.triggerId);
     if (!triggerRow) throw new Error('방금 insert 한 트리거가 DB 에서 보이지 않음');
@@ -195,7 +197,16 @@ async function runMockE2E(): Promise<void> {
       // sine wav 1개로 전 문장 대체 (빠른 테스트 3초 × 5 = 15s)
       const voiceWav = path.join(itemDir, 'voice.wav');
       await spawnFfmpeg(
-        ['-y', '-f', 'lavfi', '-i', 'sine=frequency=440:sample_rate=22050:duration=15', '-c:a', 'pcm_s16le', voiceWav],
+        [
+          '-y',
+          '-f',
+          'lavfi',
+          '-i',
+          'sine=frequency=440:sample_rate=22050:duration=15',
+          '-c:a',
+          'pcm_s16le',
+          voiceWav,
+        ],
         { capture: true, timeoutMs: 30_000 },
       );
 

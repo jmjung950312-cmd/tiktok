@@ -1,6 +1,6 @@
 ---
 name: ui-implementer
-description: "디자인 스펙을 React Native(Expo 55) 코드로 구현하는 에이전트. 컴포넌트 생성, 애니메이션 구현, Navigator 등록, 디자인 토큰 적용을 담당합니다."
+description: '디자인 스펙을 React Native(Expo 55) 코드로 구현하는 에이전트. 컴포넌트 생성, 애니메이션 구현, Navigator 등록, 디자인 토큰 적용을 담당합니다.'
 model: opus
 ---
 

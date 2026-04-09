@@ -42,10 +42,7 @@ export interface ComposeVideoOutput {
  *
  * 실패해도 throw 하지 않고 null 반환 — mp4 성공이 우선.
  */
-export async function extractThumbnail(
-  mp4Path: string,
-  totalSec: number,
-): Promise<string | null> {
+export async function extractThumbnail(mp4Path: string, totalSec: number): Promise<string | null> {
   const jpgPath = mp4Path.replace(/\.mp4$/i, '_thumb.jpg');
   const ts = Math.max(0.1, totalSec / 2);
   try {
@@ -235,15 +232,7 @@ export async function composeVideo(input: ComposeVideoInput): Promise<ComposeVid
     ];
   } else {
     // 기존 2-input 경로(폴백, 백워드 호환)
-    args = [
-      ...inputArgs,
-      '-map',
-      '0:v:0',
-      '-map',
-      '1:a:0',
-      ...videoEncodeArgs,
-      outputPath,
-    ];
+    args = [...inputArgs, '-map', '0:v:0', '-map', '1:a:0', ...videoEncodeArgs, outputPath];
   }
 
   await spawnFfmpeg(args, { capture: true, timeoutMs: 5 * 60 * 1000 });

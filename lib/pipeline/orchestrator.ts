@@ -100,8 +100,7 @@ export async function runPipeline(
       : content.items;
 
   for (let i = 0; i < targetItems.length; i += 1) {
-    const itemIndex =
-      typeof options.onlyItemIndex === 'number' ? options.onlyItemIndex : i;
+    const itemIndex = typeof options.onlyItemIndex === 'number' ? options.onlyItemIndex : i;
     const item = targetItems[i];
 
     const itemDbId = dbEnabled ? ensureJobItemRow(jobId, itemIndex) : null;
@@ -207,10 +206,7 @@ export async function runPipeline(
   };
 }
 
-function buildMetadata(
-  content: FinalContent,
-  results: RunPipelineResult['items'],
-): unknown {
+function buildMetadata(content: FinalContent, results: RunPipelineResult['items']): unknown {
   return {
     jobId: content.jobId,
     category: content.category,

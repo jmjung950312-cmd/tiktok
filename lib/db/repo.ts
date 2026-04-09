@@ -62,9 +62,7 @@ export function insertJob(input: {
 }
 
 export function getJobById(id: string): JobRow | null {
-  const row = getDb()
-    .prepare(`SELECT * FROM jobs WHERE id = ?`)
-    .get(id) as JobRowDb | undefined;
+  const row = getDb().prepare(`SELECT * FROM jobs WHERE id = ?`).get(id) as JobRowDb | undefined;
   return row ? mapJob(row) : null;
 }
 
@@ -145,9 +143,9 @@ export function insertJobItem(input: { jobId: string; itemIndex: number }): JobI
 }
 
 export function getJobItemById(id: string): JobItemRow | null {
-  const row = getDb()
-    .prepare(`SELECT * FROM job_items WHERE id = ?`)
-    .get(id) as JobItemRowDb | undefined;
+  const row = getDb().prepare(`SELECT * FROM job_items WHERE id = ?`).get(id) as
+    | JobItemRowDb
+    | undefined;
   return row ? mapJobItem(row) : null;
 }
 
@@ -273,9 +271,9 @@ export function insertTeamTrigger(input: {
 }
 
 export function getTriggerById(id: string): TeamTriggerRow | null {
-  const row = getDb()
-    .prepare(`SELECT * FROM team_triggers WHERE id = ?`)
-    .get(id) as TeamTriggerRowDb | undefined;
+  const row = getDb().prepare(`SELECT * FROM team_triggers WHERE id = ?`).get(id) as
+    | TeamTriggerRowDb
+    | undefined;
   return row ? mapTrigger(row) : null;
 }
 
@@ -417,9 +415,7 @@ export function insertPromptChange(input: {
     `INSERT INTO prompt_changes (id, target_file, diff, rationale, status)
      VALUES (?, ?, ?, ?, 'proposed')`,
   ).run(id, input.targetFile, input.diff, input.rationale);
-  const row = db
-    .prepare(`SELECT * FROM prompt_changes WHERE id = ?`)
-    .get(id) as {
+  const row = db.prepare(`SELECT * FROM prompt_changes WHERE id = ?`).get(id) as {
     id: string;
     target_file: string;
     diff: string;

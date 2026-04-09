@@ -36,6 +36,7 @@ PEXELS_API_KEY=여기에_복사한_키_붙여넣기
 ```
 
 ⚠️ **보안 주의**:
+
 - `NEXT_PUBLIC_` 접두사를 **절대 붙이지 마세요** (클라이언트에 노출됨)
 - 본 키는 서버 사이드(Node.js 프로세스)에서만 사용됨
 
@@ -59,13 +60,13 @@ npx tsx scripts/test-background-fetch.ts love-psychology
 
 `lib/providers/background.ts`의 `CATEGORY_QUERY_MAP` 참조:
 
-| 카테고리 코드 | 검색 키워드 |
-|---|---|
-| `love-psychology` | couple walking / city night / holding hands |
-| `unknown-facts` | nature macro / space stars / abstract pattern |
-| `money-habits` | keyboard typing / desk workspace / coffee laptop |
-| `relationships` | friends talking / group cafe / city park |
-| `self-improvement` | sunrise running / book reading / mountain hike |
+| 카테고리 코드      | 검색 키워드                                      |
+| ------------------ | ------------------------------------------------ |
+| `love-psychology`  | couple walking / city night / holding hands      |
+| `unknown-facts`    | nature macro / space stars / abstract pattern    |
+| `money-habits`     | keyboard typing / desk workspace / coffee laptop |
+| `relationships`    | friends talking / group cafe / city park         |
+| `self-improvement` | sunrise running / book reading / mountain hike   |
 
 검색어를 수정하거나 추가하려면 위 상수를 직접 편집하면 됩니다.
 
@@ -95,13 +96,13 @@ npx tsx scripts/test-background-fetch.ts love-psychology
 
 ## 7. 트러블슈팅
 
-| 증상 | 원인 | 해결 |
-|---|---|---|
-| `Pexels 응답 403` | API 키 오류 또는 한도 초과 | Pexels 대시보드에서 키 재확인, 1시간 대기 |
-| `Pexels 응답 429` | Rate limit (200 req/시간) | 1시간 대기 또는 캐시 사용 |
-| 다운로드는 성공하는데 mp4 재생 안 됨 | 부분 다운로드 | 해당 캐시 파일 삭제 후 재시도 |
-| 세로형 mp4가 반환되지 않음 | 검색어가 너무 구체적 | CATEGORY_QUERY_MAP 에 더 일반적인 키워드 추가 |
-| 키 설정했는데 여전히 폴백 | `.env.local` 로드 실패 | `next dev` 재시작 또는 tsx 스크립트는 `dotenv/config` 수동 로드 필요 |
+| 증상                                 | 원인                       | 해결                                                                 |
+| ------------------------------------ | -------------------------- | -------------------------------------------------------------------- |
+| `Pexels 응답 403`                    | API 키 오류 또는 한도 초과 | Pexels 대시보드에서 키 재확인, 1시간 대기                            |
+| `Pexels 응답 429`                    | Rate limit (200 req/시간)  | 1시간 대기 또는 캐시 사용                                            |
+| 다운로드는 성공하는데 mp4 재생 안 됨 | 부분 다운로드              | 해당 캐시 파일 삭제 후 재시도                                        |
+| 세로형 mp4가 반환되지 않음           | 검색어가 너무 구체적       | CATEGORY_QUERY_MAP 에 더 일반적인 키워드 추가                        |
+| 키 설정했는데 여전히 폴백            | `.env.local` 로드 실패     | `next dev` 재시작 또는 tsx 스크립트는 `dotenv/config` 수동 로드 필요 |
 
 ---
 

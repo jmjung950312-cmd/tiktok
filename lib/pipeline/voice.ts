@@ -82,21 +82,10 @@ export async function synthesizeScript(input: SynthesizeScriptInput): Promise<Vo
   writeFileSync(listFile, listBody, 'utf-8');
 
   const concatWav = path.join(itemDir, 'voice.wav');
-  await spawnFfmpeg(
-    [
-      '-y',
-      '-f',
-      'concat',
-      '-safe',
-      '0',
-      '-i',
-      listFile,
-      '-c',
-      'copy',
-      concatWav,
-    ],
-    { capture: true, timeoutMs: 120_000 },
-  );
+  await spawnFfmpeg(['-y', '-f', 'concat', '-safe', '0', '-i', listFile, '-c', 'copy', concatWav], {
+    capture: true,
+    timeoutMs: 120_000,
+  });
 
   const totalMs = await readMediaDurationMs(concatWav).catch(() => cursorMs);
 

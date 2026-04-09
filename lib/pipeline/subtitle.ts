@@ -105,8 +105,7 @@ export function buildAssSubtitle(input: BuildAssInput): BuildAssOutput {
     .map((seg) => {
       const start = msToAssTime(seg.startMs);
       const end = msToAssTime(seg.endMs);
-      const text =
-        mode === 'karaoke' ? buildKaraokeLine(seg) : escapeAssText(seg.text);
+      const text = mode === 'karaoke' ? buildKaraokeLine(seg) : escapeAssText(seg.text);
       // Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
       return `Dialogue: 0,${start},${end},${styleName},,0,0,0,,${text}`;
     })

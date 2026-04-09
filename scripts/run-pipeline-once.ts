@@ -14,7 +14,10 @@ async function main(): Promise<void> {
   // 선택적: 두 번째 인자로 재처리할 item index 목록 전달 가능 (예: "2,3,4")
   const onlyArg = process.argv[3];
   const onlyIndices = onlyArg
-    ? onlyArg.split(',').map((s) => Number.parseInt(s.trim(), 10)).filter((n) => Number.isFinite(n))
+    ? onlyArg
+        .split(',')
+        .map((s) => Number.parseInt(s.trim(), 10))
+        .filter((n) => Number.isFinite(n))
     : null;
 
   try {
@@ -31,7 +34,7 @@ async function main(): Promise<void> {
       console.log(JSON.stringify(result, null, 2));
     }
   } catch (err) {
-    const msg = err instanceof Error ? err.stack ?? err.message : String(err);
+    const msg = err instanceof Error ? (err.stack ?? err.message) : String(err);
     console.error('PIPELINE_ERROR:', msg);
     process.exit(1);
   }

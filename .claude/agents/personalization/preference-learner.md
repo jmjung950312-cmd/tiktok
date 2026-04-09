@@ -63,9 +63,7 @@ tools:
       "avoided": ["오늘은", "안녕하세요"]
     }
   },
-  "recentEdits": [
-    { "jobId": "...", "itemIndex": 0, "changeSummary": "..." }
-  ]
+  "recentEdits": [{ "jobId": "...", "itemIndex": 0, "changeSummary": "..." }]
 }
 ```
 

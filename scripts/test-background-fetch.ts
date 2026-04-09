@@ -14,10 +14,7 @@
 import { existsSync, statSync } from 'node:fs';
 import path from 'node:path';
 
-import {
-  ensureBackgroundForCategory,
-  CATEGORY_QUERY_MAP,
-} from '../lib/providers/background';
+import { ensureBackgroundForCategory, CATEGORY_QUERY_MAP } from '../lib/providers/background';
 
 const VALID_CATEGORIES = Object.keys(CATEGORY_QUERY_MAP);
 
